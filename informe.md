@@ -110,14 +110,14 @@ Por tanto la respuesta final será todo $Ci$ tal que $C_i \in S$.
 
 ### Pseudocódigo
 
-def SolvePushRelabel(graph):
-g = Graph(graph)
-g.getMaxFlow(0, len(g.ver) - 1)
-solution = []
-for i in range(len(g.streetsName)):
-if (g.edge[i].capacity - g.edge[i].flow > 0):
-sol.append(g.streetsName[i])
-return solution
+    def SolvePushRelabel(graph):
+        g = Graph(graph)
+        g.getMaxFlow(0, len(g.ver) - 1)
+        solution = []
+        for i in range(len(g.streetsName)):
+            if (g.edge[i].capacity - g.edge[i].flow > 0):
+                sol.append(g.streetsName[i])
+        return solution
 
 La clase Graph contiene una implementación del algoritmo Push-Relabel para hallar flujo máximo. Al instanciarse se construye el grafo, al que se hallará el flujo, con la estructura anteriormente explicada.
 Se calcula el flujo máximo de este grafo. En el grafo resultante de calcular el flujo,las aristas que van de la fuente a vértices que representan calles que no han sido saturadas(aun admiten flujo), se toman como solución.
