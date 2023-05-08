@@ -98,7 +98,6 @@ La función de capacidad para esta red $G = (V, E)$ es el costo respectivo de la
 
 Sabemos que el valor del flujo es igual a la capacidad del corte mínimo y que las aristas que unen a los vértices que pertenecen a $S$ con los vértices que pertenecen a $V/S$ están saturadas.
 
-
 Sea $S$ el corte mínimo.
 
 Si dado el corte mínimo existe un nodo carretera $A_i$ tal que $A_i \in V/S$ esa carretera no será construida porque implica que el dinero que gana Tito al construir $A_i$ es menor o igual que el dinero que aportan las ciudades que conecta y por tanto Tito no ganaría nada.
@@ -109,14 +108,22 @@ Por tanto la respuesta final será todo $Ai$ tal que $A_i \in S$.
 
 ### Pseudocódigo
 
-    def SolvePushRelabel(graph):
-        g = Graph(graph)
-        g.getMaxFlow(0, len(g.ver) - 1)
-        solution = []
-        for i in range(len(g.streetsName)):
-            if (g.edge[i].capacity - g.edge[i].flow > 0):
-                sol.append(g.streetsName[i])
-        return solution
+    def SolveFordFulkerson(graph):
+    graph, cities, streetName = GraphBuilder(graph)
+    g = Graph(graph)
+    source = 0
+    sink = np.shape(g.graph)[0]-1
+    maxf = g.ford_fulkerson(source, sink)
+    solve = g.graph
+    streets = []
+    cST = DFS(np.array(g.graph), 0, [False for i in range(np.shape(g.graph)[0])])
 
-La clase Graph contiene una implementación del algoritmo Push-Relabel para hallar flujo máximo. Al instanciarse se construye el grafo, al que se hallará el flujo, con la estructura anteriormente explicada.
-Se calcula el flujo máximo de este grafo. En el grafo resultante de calcular el flujo,las  calles a las cuales se puede alcanzar propagándonos desde $S$ se toman como solución.
+    for i in range(len(streetName)):
+        if cST[i + 1]:
+            streets.append(streetName[i])
+
+    return streets
+
+El método Graph se encarga de crear un grafo con la estructura anteriormente mencionada.
+La clase Graph contiene una implementación del algoritmo Ford-Fulkerson para hallar flujo máximo.
+Se calcula el flujo máximo de este grafo. Luego se realiza un DFS desde la fuente sobre la red residual para obtener la partición del corte mínimo que contiene a S. Los vértices carretera pertenecientes a este conjunto serán nuestra solución.
