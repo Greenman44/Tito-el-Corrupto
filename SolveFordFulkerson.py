@@ -10,16 +10,20 @@ def SolveFordFulkerson(graph):
     maxf = g.ford_fulkerson(source, sink)
     solve = g.graph
     streets = []
-    for i in range(np.shape(solve)[1]):
-        if solve[0, i] > 0:
-            streets.append(streetName[i-cities - 1])
+    cST = DFS(np.array(g.graph), 0, [
+              False for i in range(np.shape(g.graph)[0])])
+
+    for i in range(len(streetName)):
+        if cST[i + 1]:
+            streets.append(streetName[i])
 
     return streets
 
 
-# gx = [[50, 150, 0, 100],
-#       [150, 70, 50, 0],
-#       [0, 50, 60, 0],
-#       [100, 0, 0, 10]]
+gx = [[15, 10, 15],
+      [10, 1, 0],
+      [15, 0, 1],
+      ]
 
-# print(solve(gx))
+x = SolveFordFulkerson(gx)
+print(x)

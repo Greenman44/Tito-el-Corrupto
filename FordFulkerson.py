@@ -81,14 +81,35 @@ class Graph:
         return max_flow
 
 
-# gx = [[50, 150, 0, 100],
-#       [150, 70, 50, 0],
-#       [0, 50, 60, 0],
-#       [100, 0, 0, 10]
+def DFS(graph, currentVertex, visited):
+    visited[currentVertex] = True
+    for i in range(np.shape(graph)[1]):
+        if graph[currentVertex][i] > 0 and not visited[i]:
+            DFS(graph, i, visited)
+    return visited
+
+
+# gx = [[0, 10, 20, 3, 0, 0, 0, 0, 0],
+#       [0, 0, 0, 0, np.inf, np.inf, 0, 0, 0],
+#       [0, 0, 0, 0, 0, np.inf, np.inf, 0, 0],
+#       [0, 0, 0, 0, 0, np.inf, np.inf, np.inf, 0],
+#       [0, 0, 0, 0, 0, 0, 0, 0, 5],
+#       [0, 0, 0, 0, 0, 0, 0, 0, 15],
+#       [0, 0, 0, 0, 0, 0, 0, 0, 4],
+#       [0, 0, 0, 0, 0, 0, 0, 0, 7],
+#       [0, 0, 0, 0, 0, 0, 0, 0, 0]
+#       ]
+# gx = [[0, 10, 15, 0, 0, 0, 0],
+#       [0, 0, 0, np.inf, np.inf, 0, 0],
+#       [0, 0, 0, np.inf, 0, np.inf, 0],
+#       [0, 0, 0, 0, 0, 0, 15],
+#       [0, 0, 0, 0, 0, 0, 1],
+#       [0, 0, 0, 0, 0, 0, 1],
+#       [0, 0, 0, 0, 0, 0, 0]
 #       ]
 # g = Graph(gx)
 
 # source = 0
-# sink = 8
+# sink = 6
 # print("Max Flow: %d " % g.ford_fulkerson(source, sink))
-# print(g.graph)
+# print(DFS(np.array(g.graph), 0, [False for i in range(np.shape(g.graph)[0])]))
