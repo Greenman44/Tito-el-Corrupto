@@ -86,7 +86,7 @@ El costo de las aristas que conectan a las carreteras con las ciudades es infini
 
 ### Solución del prblema
 
-Para resolver nuestro problema hallamos el valor del flujo máximo en la red de flujo creada anteriormente y tenemos que el dinero que pasa por las manos de Tito es el total que brinda el gobierno por construir cada carretara menos el valor del flujo del máximo. Las carreteras que tenemos que construir son las que se llega a ellas por aristas que no fueron saturadas.
+Para resolver nuestro problema hallamos el valor del flujo máximo en la red de flujo creada anteriormente y tenemos que el dinero que pasa por las manos de Tito es el total que brinda el gobierno por construir cada carretara menos el valor del flujo del máximo. Las carreteras que tenemos que construir son las que petenecen al corte mínimo.
 
 ### Demostración de correctitud
 
@@ -98,7 +98,6 @@ La función de capacidad para esta red $G = (V, E)$ es el costo respectivo de la
 
 Sabemos que el valor del flujo es igual a la capacidad del corte mínimo y que las aristas que unen a los vértices que pertenecen a $S$ con los vértices que pertenecen a $V/S$ están saturadas.
 
-Por tanto el corte mínimo nunca va a estar entre un nodo correspondiente a una calle y un nodo correspondiente a una ciudad, pues la capacidad de estas aristas es infinitas y es imposible saturarlas.
 
 Sea $S$ el corte mínimo.
 
@@ -120,4 +119,4 @@ Por tanto la respuesta final será todo $Ci$ tal que $C_i \in S$.
         return solution
 
 La clase Graph contiene una implementación del algoritmo Push-Relabel para hallar flujo máximo. Al instanciarse se construye el grafo, al que se hallará el flujo, con la estructura anteriormente explicada.
-Se calcula el flujo máximo de este grafo. En el grafo resultante de calcular el flujo,las aristas que van de la fuente a vértices que representan calles que no han sido saturadas(aun admiten flujo), se toman como solución.
+Se calcula el flujo máximo de este grafo. En el grafo resultante de calcular el flujo,las  calles a las cuales se puede alcanzar propagándonos desde $S$ se toman como solución.
