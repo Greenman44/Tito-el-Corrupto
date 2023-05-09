@@ -101,11 +101,11 @@ Sabemos que el valor del flujo es igual a la capacidad del corte mínimo y que l
 
 Sea $S$ el corte mínimo.
 
-Si dado el corte mínimo existe un nodo carretera $A_i$ tal que $C_i \in V/S$ esa carretera no será construida porque que esa arista esté saturada implica que el dinero que gana Tito al construir $A_i$ es menor o igual que el dinero que aportan las ciudades que conecta y por tanto Tito no ganaría nada.
+Si dado el corte mínimo existe un nodo carretera $A_i$ tal que $A_i \in V/S$ esa carretera no será construida porque implica que el dinero que gana Tito al construir $A_i$ es menor o igual que el dinero que aportan las ciudades que conecta y por tanto Tito no ganaría nada.
 
 Si dado el corte mínimo existe un nodo ciudad $C_i$ que pertenece a $S$ es necesario conectar esa ciudad, la artista entre $C_i$ y $T$ está saturada por el dinero de las carreteras, o sea, las calles que conectan a $C_i$ aportan más dinero del que resta $C_i$.
 
-Por tanto la respuesta final será todo $Ci$ tal que $C_i \in S$.
+Por tanto la respuesta final será todo $Ai$ tal que $A_i \in S$.
 
 ### Pseudocódigo
 
